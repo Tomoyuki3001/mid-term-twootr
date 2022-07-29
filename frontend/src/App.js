@@ -1,9 +1,13 @@
+import React from "react";
+import Header from "./components/Header";
+import Allposts from "./components/Allposts";
 import "./App.css";
 
 function App() {
   return (
     <div>
-      <h1>Test</h1>
+      <Header />
+      <Allposts />
     </div>
   );
 }
