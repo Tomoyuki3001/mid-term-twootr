@@ -12,22 +12,24 @@ so that <gain> | so that <gain>
 ## Story 1 (User profile Form):
 
 As a user,
-I want create a new account and posts
-so that I can make both
+I want create a new account.
+so that I can make post with my name in it.
 
-When I create my account my profile image is also selected
+When I create my account my profile image is also selected.
 
-# Story 2 (Create new pots Form):
-
-As a user,
-I want create a new posts
-Also, I can see the all of posts that are already made
-
-# Story 3 (All of tweeets form):
+## Story 2 (User profile Form):
 
 As a user,
-I can see the all of posts one by one
-And, there are some icons that I can use
+I want type in a input
+so that I can creat a new post
+
+When I click the button to post my post will be show in the list.
+
+# Story 3 (Create new pots Form):
+
+As a user,
+I want to red the post
+So that I can like, save or...."change colors"
 
 # Data Structure
 
@@ -50,13 +52,19 @@ const posts = [post1,post2,... ]
 
 - body
   - header
-    - h1 title
-  - main
+    - nav
+      - h1 title
+      - button (write...)
+    - avatar
     - create new account
-      - form new account
-    - create new post
+    - slug
+  - main
+    - section
+      - create new post
       - form new posts
-    - show all of tweets
+      - button twootr
+    - section
+      - show all of tweets
       - ul
         - li userName + content + dataAdded
 
@@ -65,9 +73,9 @@ const posts = [post1,post2,... ]
 - App
   - Header
   - Main (accounts, tweets)
-    - Account
+    - CreatAccount
     - Tweets
       - CreateNewPosts
-      - AllOfAccounts
+      - AllAccounts
 
 # Data Map
