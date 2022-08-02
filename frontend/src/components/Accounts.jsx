@@ -8,9 +8,10 @@ export default function Accounts(props) {
     const { account, setAccount } = props;
     const [accountFirstName, setAccountFirstName] = useState('');
     const [accountLastName, setAccountLastName] = useState('');
+
     const newAccount = {
       name: accountFirstName + " " + accountLastName,
-      slug: "@" + accountFirstName + "-" + accountLastName
+      slug: accountFirstName + "-" + accountLastName
     };
     
       const handleFirstNameChange = (e) => {
@@ -21,10 +22,7 @@ export default function Accounts(props) {
       };
       const submitAccount = (event) => {
         event.preventDefault();
-        setAccountFirstName(event.target[0].value)
-        setAccountLastName(event.target[1].value)
         setAccount(newAccount)
-        // console.log("account", account);
       };
   return (
     <AccountForm>
@@ -38,8 +36,8 @@ export default function Accounts(props) {
         </div>
         </CreateAccountStyles>
         <p>{account.name}</p>
-        <p>{account.slug}</p>
+        <p>@{account.slug}</p>
     </form>
     </AccountForm>
   )
-}
+ }
