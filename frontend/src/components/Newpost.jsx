@@ -11,10 +11,9 @@ export default function Newpost(props) {
   const {newPost, setNewPost} = props
 
   useEffect(() => {
-    console.log(account);
+    console.log(account, content);
 
-  }, [account])
-  
+  }, [account, content])
 
   const newTweet = {
     content: content, 
@@ -35,10 +34,10 @@ export default function Newpost(props) {
 
   const submitAccount = (event) => {
     event.preventDefault();
-    setContent(event.target[0].value)
+    setContent(event.target.value)
     setPost(newTweet)
     newPostObject.author = account.name
-    newPostObject.content = post.content
+    newPostObject.content = newTweet.content;
     newPostObject.authorSlug = account.slug
     newPostObject.dateAdded = "000"
     console.log("check object", newPostObject);
@@ -56,12 +55,13 @@ export default function Newpost(props) {
     <div>
         <Accounts account={account} setAccount={setAccount}/>
         <CreatePost>
-        <form onSubmit={submitAccount} >
+        <form>
         <p>Create a new post</p>
         {/* <textarea placeholder="What's happening?" value={content} onChange={handleContent}></textarea> */}
         <input maxLength={140} placeholder="What's happening?" value={content} onChange={handleContent}/>
         <div>
-            <button>Twoot</button>
+            {/* <input onClick={submitAccount} value="submit" type = "button" /> */}
+            <button onClick={submitAccount}>Twoot</button>
             <span>140</span>
         </div>
         </form>
