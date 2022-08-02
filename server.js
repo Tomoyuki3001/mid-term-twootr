@@ -25,6 +25,7 @@ app.get("/twoots", (req, res) => {
 });
 
 app.post("/twoot", (req, res) => {
+  console.log(req);
   if (!req.body || !req.body.newTwoot) {
     res.status(400).send("Invalid data! Please, review the documentation.");
   } else {
