@@ -12,7 +12,6 @@ export default function Newpost(props) {
 
   const realDate = new Date();
   const date = realDate.getFullYear() + '|' + (realDate.getMonth()+1) + '|' + realDate.getDate();
-  console.log(date);
 
   useEffect(() => {
     console.log(account, content);
