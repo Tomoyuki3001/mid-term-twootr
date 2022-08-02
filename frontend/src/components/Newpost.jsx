@@ -10,11 +10,14 @@ export default function Newpost(props) {
   const [content, setContent] = useState("");
   const {newPost, setNewPost} = props
 
+  const realDate = new Date();
+  const date = realDate.getFullYear() + '|' + (realDate.getMonth()+1) + '|' + realDate.getDate();
+  console.log(date);
+
   useEffect(() => {
     console.log(account);
 
   }, [account])
-  
 
   const newTweet = {
     content: content, 
@@ -40,7 +43,7 @@ export default function Newpost(props) {
     newPostObject.author = account.name
     newPostObject.content = post.content
     newPostObject.authorSlug = account.slug
-    newPostObject.dateAdded = "000"
+    newPostObject.dateAdded = date
     console.log("check object", newPostObject);
     axios
       .post("http://localhost:8080/twoot", {newTwoot:newPostObject})
@@ -50,6 +53,7 @@ export default function Newpost(props) {
       }).catch((err) => {
         console.log(err);
       })
+ 
   };
 
   return (
@@ -59,7 +63,7 @@ export default function Newpost(props) {
         <form onSubmit={submitAccount} >
         <p>Create a new post</p>
         {/* <textarea placeholder="What's happening?" value={content} onChange={handleContent}></textarea> */}
-        <input maxLength={140} placeholder="What's happening?" value={content} onChange={handleContent}/>
+        <input id="postInput" maxLength={140} placeholder="What's happening?" value={content} onChange={handleContent}/>
         <div>
             <button>Twoot</button>
             <span>140</span>
