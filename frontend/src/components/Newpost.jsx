@@ -12,11 +12,9 @@ export default function Newpost(props) {
 
   const realDate = new Date();
   const date = realDate.getFullYear() + '|' + (realDate.getMonth()+1) + '|' + realDate.getDate();
-  console.log(date);
 
   useEffect(() => {
     console.log(account, content);
-
   }, [account, content])
 
   const newTweet = {
@@ -56,6 +54,16 @@ export default function Newpost(props) {
  
   };
 
+  function getChars(content){
+    console.log(content.length);
+    if(content) {
+      const charLength = content.length;
+      return 140 - charLength;
+    }else{
+      return 140
+    }
+  }  
+  
   return (
     <div>
         <Accounts account={account} setAccount={setAccount}/>
@@ -67,7 +75,7 @@ export default function Newpost(props) {
         <div>
             {/* <input onClick={submitAccount} value="submit" type = "button" /> */}
             <button onClick={submitAccount}>Twoot</button>
-            <span>140</span>
+            <span id='countChars'>{getChars(content)}</span>
         </div>
         </form>
         </CreatePost>
