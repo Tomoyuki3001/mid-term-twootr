@@ -45,7 +45,11 @@ function App() {
   ));
 
   function changeColor(e) {
-    e.currentTarget.style.color = "pink";
+    if (e.currentTarget.style.color != "pink") {
+      e.currentTarget.style.color = "pink";
+    } else {
+      e.currentTarget.style.color = "black";
+    }
   }
 
   return (

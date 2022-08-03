@@ -43,7 +43,6 @@ export default function Accounts(props) {
             <button type='submit'>Add new account</button>
             <i class="fas fa-edit"></i>
         </div>
-
        
         </CreateAccountStyles>
         {/* <img src="https://avatars.dicebear.com/api/bottts/${Slug}.svg"> */}
