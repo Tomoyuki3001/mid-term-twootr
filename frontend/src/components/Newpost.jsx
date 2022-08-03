@@ -1,84 +1,93 @@
-import axios from 'axios'
-import React, { useEffect } from 'react'
-import { useState } from 'react'
-import Accounts from './Accounts'
-import { CreatePost } from './styles/CreatePost'
+import axios from 'axios';
+import React, { useRef } from 'react'
+import Accounts from './Accounts';
+import { CreatePost } from './styles/CreatePost';
+import { NavStyles } from './styles/NavStyles';
+
+
 
 export default function Newpost(props) {
-  const [account, setAccount] = useState({})
-  const [post, setPost] = useState("")
-  const [content, setContent] = useState("");
-  const {newPost, setNewPost} = props
+  const {account, setAccount} = props
+  const {content, setContent} = props
+  const {array, setArray} = props
 
+  const inputElement = useRef(null);
   const realDate = new Date();
-  const date = realDate.getFullYear() + '|' + (realDate.getMonth()+1) + '|' + realDate.getDate();
 
-  useEffect(() => {
-    console.log(account, content);
-  }, [account, content])
-
-  const newTweet = {
-    content: content, 
-  }
+  const date =
+    realDate.getFullYear() +
+    "-" +
+    (realDate.getMonth() + 1) +
+    "-" +
+    realDate.getDate();
 
   const newPostObject = {
-    author:"",
-    authorSlug:"",
-    content: "",
-    dateAdded:"",
-  }
-
+    author: "",
+    authorSlug: "",
+    content: content,
+    dateAdded: "",
+  };
 
   const handleContent = (event) => {
-    console.log("check", event.target.value);
-    setContent(event.target.value)
+    setContent(event.target.value);
   };
+
+  const handlefocus = () => {
+    inputElement.current.focus();
+  }
 
   const submitAccount = (event) => {
     event.preventDefault();
-    setContent(event.target.value)
-    setPost(newTweet)
-    newPostObject.author = account.name
-    newPostObject.content = newTweet.content;
-    newPostObject.authorSlug = account.slug
-    newPostObject.dateAdded = date
+    setContent(event.target.value);
+    newPostObject.author = account.name;
+    newPostObject.content = newPostObject.content;
+    newPostObject.authorSlug = account.slug;
+    newPostObject.dateAdded = date;
     console.log("check object", newPostObject);
     axios
-      .post("http://localhost:8080/twoot", {newTwoot:newPostObject})
+      .post("http://localhost:8080/twoot", { newTwoot: newPostObject })
       .then((res) => {
-        console.log('res post', res);
-        setNewPost([...newPost, ...{res}])
-      }).catch((err) => {
-        console.log(err);
+        console.log("check res", res.data);
+        setArray([...array, {...res.data }]);
       })
- 
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  function getChars(content){
-    console.log(content.length);
+  const getChars = (content) => {
+    console.log('content', content)
     if(content) {
       const charLength = content.length;
       return 140 - charLength;
-    }else{
-      return 140
     }
-  }  
+    return 140
+  }
   
   return (
     <div>
-        <Accounts account={account} setAccount={setAccount}/>
-        <CreatePost>
-        <form>
-        <p>Create a new post</p>
-        {/* <textarea placeholder="What's happening?" value={content} onChange={handleContent}></textarea> */}
-        <input id="postInput" maxLength={140} placeholder="What's happening?" value={content} onChange={handleContent}/>
-        <div>
-            {/* <input onClick={submitAccount} value="submit" type = "button" /> */}
-            <button onClick={submitAccount}>Twoot</button>
-            <span id='countChars'>{getChars(content)}</span>
-        </div>
-        </form>
-        </CreatePost>
+     <NavStyles>
+     <nav>
+        <span>Twootr</span>
+        <button onClick={handlefocus}>Write a new tweet</button>
+     </nav>
+     </NavStyles>
+          <Accounts account={account} setAccount={setAccount} />
+          <CreatePost>
+          <form>
+            <p>Create a new post</p>
+            <textarea id="postInput"
+              placeholder="What's happening?"
+              value={content} 
+              onChange={handleContent}
+              ref={inputElement}>
+              </textarea>
+            <div>
+              <button disabled={ getChars(content)<0 || getChars(content)===140} onClick={submitAccount}>Twoot</button>
+              <span id='countChars' className={getChars(content)<0?'negative':""}>{getChars(content)}</span>
+            </div>
+          </form>
+          </CreatePost>
     </div>
-  )
+  );
 }
