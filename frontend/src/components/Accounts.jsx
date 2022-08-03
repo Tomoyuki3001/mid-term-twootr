@@ -8,6 +8,7 @@ export default function Accounts(props) {
     const { account, setAccount } = props;
     const [accountFirstName, setAccountFirstName] = useState('');
     const [accountLastName, setAccountLastName] = useState('');
+    const [elements, setElements] = useState("");
 
     const newAccount = {
       name: accountFirstName + " " + accountLastName,
@@ -20,23 +21,31 @@ export default function Accounts(props) {
       const handleLastNameChange = (e) => {
         setAccountLastName(e.target.value)
       };
+
+      const createElements = () => {
+        return (
+        <div>
+        <p>{newAccount.name}</p>
+        <p>@{newAccount.slug}</p>
+        </div>
+      )}
       const submitAccount = (event) => {
         event.preventDefault();
         setAccount(newAccount)
+        setElements(createElements())
       };
   return (
     <AccountForm>
-    <form onSubmit={submitAccount} >
+    <form onSubmit={submitAccount}>
         <img src="" alt="" />
         <CreateAccountStyles>
         <div>
             <input value={accountFirstName} onChange={handleFirstNameChange} />
             <input value={accountLastName} onChange={handleLastNameChange} />
-            <button type='submit'>Add new account</button>
+            <button>Add new account</button>
         </div>
         </CreateAccountStyles>
-        <p>{account.name}</p>
-        <p>@{account.slug}</p>
+        {elements}
     </form>
     </AccountForm>
   )

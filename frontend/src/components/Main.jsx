@@ -6,12 +6,14 @@ import axios from "axios";
 
 export default function MainComponents() {
     const [array, setArray] = useState([])
+    const [account, setAccount] = useState({});
+    const [content, setContent] = useState("");
 
     useEffect(() => {
         axios.get("http://localhost:8080/twoots").then((res) => {
           setArray(res.data);
         });
-      }, []);
+      }, [array]);
 
   const twootsElements = array.map((element) => (
     <div className="post_user_box">
@@ -26,18 +28,28 @@ export default function MainComponents() {
       <div className="post_user_date_icons">
         <span>{element.dateAdded}</span>
         <div className="post_user_icons">
-          <span>IC1</span>
-          <span>IC2</span>
-          <span>IC3</span>
+          <span onClick={changeColor}>
+            <i class="fas fa-flag"></i>
+          </span>
+          <span onClick={changeColor}>
+            <i class="fas fa-retweet"></i>
+          </span>
+          <span onClick={changeColor}>
+            <i class="fas fa-heart"></i>
+          </span>
         </div>
       </div>
     </div>
   ));
 
+  function changeColor(e) {
+    e.currentTarget.style.color = "pink";
+  }
+
   return (
     <WholeStyles>
       <div>
-        <Newpost/>
+        <Newpost account={account} setAccount={setAccount}  content={content} setContent={setContent} array={array} setArray={setArray}/>
         <TwootsList>
           <div>{twootsElements}</div>
         </TwootsList>
