@@ -4,6 +4,7 @@ import { NavStyles } from './styles/NavStyles';
 
 export default function Header() {
   const inputFocus = document.getElementById('postInput')
+  console.log("Check input", inputFocus)
 
   function handlefocus(e){
     inputFocus.focus()

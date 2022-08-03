@@ -10,3 +10,7 @@
 .post_user_date_icons {
     display: flex;
 }
+
+img{
+    max-width: 200px;
+}
