@@ -10,17 +10,11 @@ export default function Newpost(props) {
   const {array, setArray} = props
 
   const inputElement = useRef(null);
+
   const realDate = new Date();
-  console.log("check date", realDate);
+  const date = realDate.toLocaleDateString("en-CA")
 
-  const date =
-    realDate.getFullYear() +
-    "-" +
-    (realDate.getMonth() + 1) +
-    "-" +
-    realDate.getDate();
-
-  console.log("current date", date);
+  // console.log("date", (new Date(date)- new Date("1991-02-27"))/1000/60/60/24)
 
   const newPostObject = {
     author: "",

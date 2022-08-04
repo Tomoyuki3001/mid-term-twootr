@@ -12,11 +12,23 @@ export default function MainComponents() {
     useEffect(() => {
         axios.get("http://localhost:8080/twoots").then((res) => {
           setArray(res.data);
-          console.log("check array", res.data);
         });
       }, []);
 
-      
+      function calculateDate (date) {
+        const dif = (new Date() - new Date(date))/1000/60/60/24
+
+        if(dif < 1){
+          return "Posted Today"
+        }
+        if(dif === 1){
+          return "Posted one day ago"
+        }
+        if( dif >2 ){
+          return `Posted ${String(dif).slice(0,2)} days ago`
+        }
+
+      }
 
   const twootsElements = array.map((element) => (
     
@@ -35,7 +47,7 @@ export default function MainComponents() {
         <p>{element.content}</p>
       </div>
       <div className="post_user_date_icons">
-        <span>{element.dateAdded}</span>
+        <span>{calculateDate(element.dateAdded)}</span>
         <div className="post_user_icons">
           <span onClick={changeColor}>
             <i class="fas fa-flag"></i>
