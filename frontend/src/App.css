@@ -11,6 +11,6 @@
     display: flex;
 }
 
-img{
-    max-width: 200px;
+.negative{
+    color: red;
 }
