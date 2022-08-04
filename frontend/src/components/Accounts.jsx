@@ -30,9 +30,7 @@ export default function Accounts(props) {
         <p>@{newAccount.slug}</p>
         </div>
       )}
-      const handleAvatarChange = (e) => {
-        setAccountLastName(e.target.value)
-      };
+
       const submitAccount = (event) => {
         event.preventDefault();
         setAccountFirstName(event.target[0].value)
@@ -44,18 +42,23 @@ export default function Accounts(props) {
 
   return (
     <AccountForm>
-    <form onSubmit={submitAccount} >
-        <img value={accountAvatar} onChange={handleAvatarChange} src={`https://avatars.dicebear.com/api/bottts/${newAccount.slug}.svg`} alt="" />
-        <CreateAccountStyles>
+      <CreateAccountStyles>
         <div>
-            <input value={accountFirstName} onChange={handleFirstNameChange} />
-            <input value={accountLastName} onChange={handleLastNameChange} />
-            <button type='submit'>Add new account</button>
-            <i class="fas fa-edit"></i>
+  
+          <form onSubmit={submitAccount} >
+              <img src={`https://avatars.dicebear.com/api/bottts/${newAccount.slug}.svg`} alt="Avatar" />
+        
+              <div>
+                  <input value={accountFirstName} onChange={handleFirstNameChange} />
+                  <input value={accountLastName} onChange={handleLastNameChange} />
+                  <button type='submit'>ADD PROFILE</button>
+                  <i class="fas fa-edit"></i>
+              </div>
+            
+              {elements}
+          </form>
         </div>
-        </CreateAccountStyles>
-        {elements}
-    </form>
+      </CreateAccountStyles>
     </AccountForm>
   )
   }
