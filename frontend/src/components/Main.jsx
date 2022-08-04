@@ -16,6 +16,7 @@ export default function MainComponents() {
       }, []);
 
   const twootsElements = array.map((element) => (
+    
     <div className="post_user_box">
       <div className="post_user_information">
         <div className="user-profile">
@@ -23,7 +24,7 @@ export default function MainComponents() {
         <span>{element.author}</span>
         </div>
         <div>
-        <span>{element.authorSlug}</span>
+        <span>@{element.authorSlug}</span>
         </div>
       </div>
       <div className="post_user_contents">

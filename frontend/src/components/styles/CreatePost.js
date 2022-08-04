@@ -31,4 +31,7 @@ export const CreatePost = styled.form`
       justify-content: space-between;
     }
   }
+  .create_textarea {
+    resize: none;
+  }
 `;

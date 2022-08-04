@@ -9,13 +9,11 @@ export default function Accounts(props) {
     const [accountValue, setAccountValue] = useState(true)
 
     const handleFirstNameChange = (e) => {
-      setAccount({...account, firstName:`${e.target.value}`, slug:`@${e.target.value}-${account.lastName}`});
+      setAccount({...account, firstName:`${e.target.value}`, slug:`${e.target.value}-${account.lastName}`});
     };
     const handleLastNameChange = (e) => {
-      setAccount({...account, lastName:`${e.target.value}`, slug:`@${account.firstName}-${e.target.value}`});
+      setAccount({...account, lastName:`${e.target.value}`, slug:`${account.firstName}-${e.target.value}`});
     };
-
-
 
     const changeValue = (event) => {
       event.preventDefault();
@@ -33,7 +31,7 @@ export default function Accounts(props) {
     useEffect(() => {
       account.firstName = "Default";
       account.lastName = "Name";
-      account.slug = "@Default-Name"
+      account.slug = "Default-Name"
     }, [])
 
     const defaultElement = (
@@ -43,7 +41,7 @@ export default function Accounts(props) {
             <p className='create-account-name'>{account.firstName} {account.lastName}</p>
             <button type='submit' onClick={changeValue}><i class="fas fa-edit"></i></button>
        </div>
-       <p className='ceate-account-slug'>{account.slug}</p>
+       <p className='ceate-account-slug'>@{account.slug}</p>
        </div>
     )
 
@@ -57,7 +55,7 @@ export default function Accounts(props) {
       </div>
       <div className='create-account-name-box'>
       <p className='ceate-account-name'>{account.firstName} {account.lastName}</p>
-      <p className='ceate-account-slug'>{account.slug}</p>
+      <p className='ceate-account-slug'>@{account.slug}</p>
       </div>
       </form>
     )
@@ -70,7 +68,7 @@ export default function Accounts(props) {
       {accountValue ? defaultElement : changedElement}
     </form>
     </div>
-     </CreateAccountStyles>
+      </CreateAccountStyles>
     </AccountForm>
   )
   }
