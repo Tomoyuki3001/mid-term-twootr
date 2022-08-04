@@ -21,6 +21,9 @@ export const CreatePost = styled.form`
       margin-bottom: 10px;
       padding: 0 10px;
     }
+    button {
+      cursor: pointer;
+    }
     textarea:focus,
     input:focus {
       box-shadow: 0 0 0 0;

@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const CreateAccountStyles = styled.div`
   div {
-    padding: 4% 0 2% 0;
     background-color: black;
     textarea:focus,
     input:focus {
@@ -28,15 +27,45 @@ export const CreateAccountStyles = styled.div`
     background-color: #eef0f2;
     border-radius: 50%;
     padding: 2%;
-    max-width: 180px;
+    width: 180px;
+    margin-bottom: 14px;
   }
 
   div p {
     color: #eec643;
+    text-align: center;
     margin: 0;
   }
   div p:first-child {
     font-size: 26px;
     font-weight: bold;
+  }
+
+  .account-form {
+    padding: 4% 0 2% 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .create-account-box {
+    display: flex;
+    align-items: center;
+    button {
+      margin-left: 10px;
+    }
+  }
+  .create-account-name {
+    margin: 0%;
+  }
+  .account-input-box {
+    display: flex;
+  }
+  .create-account-input {
+    margin: 0% 3% 0% 0%;
+  }
+  .create-account-name-box {
+    text-align: center;
+    margin-top: 20px;
   }
 `;

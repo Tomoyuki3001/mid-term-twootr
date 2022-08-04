@@ -4,6 +4,9 @@ export const TwootsList = styled.div`
   div {
     background-color: #eef0f2;
   }
+  .account-form {
+    background-color: black;
+  }
   .post_user_box {
     padding: 10px;
     margin: 5% 10%;
@@ -12,8 +15,16 @@ export const TwootsList = styled.div`
       max-width: 60px;
     }
   }
+
   .post_user_box {
     padding: 20px;
+    cursor: -webkit-grab;
+    transition: all 0.5s;
+    :hover {
+      transition: all 0.5s;
+      -webkit-box-shadow: 6px 5px 0px 0px rgba(0, 0, 0, 0.4);
+      box-shadow: 6px 5px 0px 0px rgba(0, 0, 0, 0.4);
+    }
   }
   .post_user_information {
     display: flex;
