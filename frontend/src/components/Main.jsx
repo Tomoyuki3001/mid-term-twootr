@@ -19,8 +19,8 @@ export default function MainComponents() {
     <div className="post_user_box">
       <div className="post_user_information">
         <div className="user-profile">
-        <img src={`https://avatars.dicebear.com/api/bottts/${element.authorSlug}.svg`} alt="" />
-        <span>{element.author}</span>
+          <img src={`https://avatars.dicebear.com/api/bottts/${element.authorSlug}.svg`} alt="" />
+          <span>{element.author}</span>
         </div>
         <div>
           <span>@{element.authorSlug}</span>
