@@ -1,16 +1,6 @@
-.post_user_box {
-    padding: 0% 5%;
-}
-
-.post_user_information {
+/* .account-form {
+    margin: 0% 10%;
     display: flex;
-    justify-content: space-between;
-}
-
-.post_user_date_icons {
-    display: flex;
-}
-
-img{
-    max-width: 200px;
-}
+    justify-content: center;
+    text-align: center;
+  } */

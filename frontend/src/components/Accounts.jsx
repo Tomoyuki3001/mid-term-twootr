@@ -1,59 +1,70 @@
 import React from 'react'
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import { AccountForm } from './styles/AccountForm';
-import { CreateAccountStyles } from './styles/CreateAccountStyle';
 
 
 export default function Accounts(props) {
     const { account, setAccount} = props;
-    const [accountFirstName, setAccountFirstName] = useState('');
-    const [accountLastName, setAccountLastName] = useState('');
-    const [elements, setElements] = useState("");
-    const [accountAvatar, setAvatar] = useState('');
-    const newAccount = {
-      avatar: accountAvatar,
-      name: accountFirstName + " " + accountLastName,
-      slug: accountFirstName + "-" + accountLastName
-    };
-    
-      const handleFirstNameChange = (e) => {
-        setAccountFirstName(e.target.value);
-      };
-      const handleLastNameChange = (e) => {
-        setAccountLastName(e.target.value)
-      };
+    const [accountValue, setAccountValue] = useState(true)
 
-      const createElements = () => {
-        return (
-        <div>
-        <p>{newAccount.name}</p>
-        <p>@{newAccount.slug}</p>
-        </div>
-      )}
-      const handleAvatarChange = (e) => {
-        setAccountLastName(e.target.value)
-      };
-      const submitAccount = (event) => {
-        event.preventDefault();
-        setAccountFirstName(event.target[0].value)
-        setAccountLastName(event.target[1].value)
-        setAvatar(event.target[2].value)
-        setAccount(newAccount)
-        setElements(createElements())
-      };
+    const handleFirstNameChange = (e) => {
+      setAccount({...account, firstName:`${e.target.value}`, slug:`@${e.target.value}-${account.lastName}`});
+    };
+    const handleLastNameChange = (e) => {
+      setAccount({...account, lastName:`${e.target.value}`, slug:`@${account.firstName}-${e.target.value}`});
+    };
+
+
+
+    const changeValue = (event) => {
+      event.preventDefault();
+      account.firstName = "";
+      account.lastName = "";
+      account.slug = ""
+      setAccountValue(!accountValue);
+    }
+
+    const submitAccount = (event) => {
+      event.preventDefault();
+      setAccountValue(!accountValue);
+    };
+
+    useEffect(() => {
+      account.firstName = "Default";
+      account.lastName = "Name";
+      account.slug = "@Default-Name"
+    }, [])
+
+    const defaultElement = (
+      <div>
+        <img src={`https://avatars.dicebear.com/api/bottts/${account.slug}.svg`} alt=""/>
+       <div className='create-account-box'>
+            <p className='create-account-name'>{account.firstName} {account.lastName}</p>
+            <button type='submit' onClick={changeValue}><i class="fas fa-edit"></i></button>
+       </div>
+       <p className='ceate-account-slug'>{account.slug}</p>
+       </div>
+    )
+
+    const changedElement = (
+      <form className='create-account-clicked'>
+        <img src={`https://avatars.dicebear.com/api/bottts/${account.slug}.svg`} alt=""/>
+      <div className='account-input-box'>
+        <input type="text" className="create-account-input" onChange={handleFirstNameChange} />
+        <input type="text" onChange={handleLastNameChange} />
+        <button type='submit'onClick={submitAccount}><i class="fas fa-edit"></i></button>
+      </div>
+      <div className='create-account-name-box'>
+      <p className='ceate-account-name'>{account.firstName} {account.lastName}</p>
+      <p className='ceate-account-slug'>{account.slug}</p>
+      </div>
+      </form>
+    )
+ 
   return (
     <AccountForm>
-    <form onSubmit={submitAccount} >
-        <img value={accountAvatar} onChange={handleAvatarChange} src="https://avatars.dicebear.com/api/bottts/${newAccount.Slug}.svg" alt="" />
-        <CreateAccountStyles>
-        <div>
-            <input value={accountFirstName} onChange={handleFirstNameChange} />
-            <input value={accountLastName} onChange={handleLastNameChange} />
-            <button type='submit'>Add new account</button>
-            <i class="fas fa-edit"></i>
-        </div>
-        </CreateAccountStyles>
-        {elements}
+    <form className='account-form' >
+      {accountValue ? defaultElement : changedElement}
     </form>
     </AccountForm>
   )

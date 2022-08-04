@@ -13,14 +13,14 @@ export default function MainComponents() {
         axios.get("http://localhost:8080/twoots").then((res) => {
           setArray(res.data);
         });
-      }, [array]);
+      }, []);
 
   const twootsElements = array.map((element) => (
     <div className="post_user_box">
       <div className="post_user_information">
-        <img src="" alt="" />
+        <img src={`https://avatars.dicebear.com/api/bottts/${element.authorSlug}.svg`} alt=""/>
         <span>{element.author}</span>
-        <span>@{element.authorSlug}</span>
+        <span>{element.authorSlug}</span>
       </div>
       <div className="post_user_contents">
         <p>{element.content}</p>

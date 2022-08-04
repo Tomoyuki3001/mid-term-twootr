@@ -4,8 +4,6 @@ import Accounts from './Accounts';
 import { CreatePost } from './styles/CreatePost';
 import { NavStyles } from './styles/NavStyles';
 
-
-
 export default function Newpost(props) {
   const {account, setAccount} = props
   const {content, setContent} = props
@@ -39,19 +37,20 @@ export default function Newpost(props) {
   const submitAccount = (event) => {
     event.preventDefault();
     setContent(event.target.value);
-    newPostObject.author = account.name;
+    newPostObject.author = account.firstName + " " + account.lastName;
     newPostObject.content = newPostObject.content;
     newPostObject.authorSlug = account.slug;
     newPostObject.dateAdded = date;
-    console.log("check object", newPostObject);
     axios
       .post("http://localhost:8080/twoot", { newTwoot: newPostObject })
       .then((res) => {
-        console.log("check res", res.data);
         setArray([...array, {...res.data }]);
       })
       .catch((err) => {
         console.log(err);
+      });
+      axios.get("http://localhost:8080/twoots").then((res) => {
+        setArray(res.data);
       });
   };
 
