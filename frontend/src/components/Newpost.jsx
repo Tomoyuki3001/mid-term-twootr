@@ -11,6 +11,7 @@ export default function Newpost(props) {
 
   const inputElement = useRef(null);
   const realDate = new Date();
+  console.log("check date", realDate);
 
   const date =
     realDate.getFullYear() +
@@ -18,6 +19,8 @@ export default function Newpost(props) {
     (realDate.getMonth() + 1) +
     "-" +
     realDate.getDate();
+
+  console.log("current date", date);
 
   const newPostObject = {
     author: "",

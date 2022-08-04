@@ -12,8 +12,11 @@ export default function MainComponents() {
     useEffect(() => {
         axios.get("http://localhost:8080/twoots").then((res) => {
           setArray(res.data);
+          console.log("check array", res.data);
         });
       }, []);
+
+      
 
   const twootsElements = array.map((element) => (
     
