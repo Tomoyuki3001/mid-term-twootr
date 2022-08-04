@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect} from 'react';
 import { AccountForm } from './styles/AccountForm';
+import { CreateAccountStyles } from './styles/CreateAccountStyle';
 
 
 export default function Accounts(props) {
@@ -63,9 +64,13 @@ export default function Accounts(props) {
  
   return (
     <AccountForm>
+      <CreateAccountStyles>
+        <div>
     <form className='account-form' >
       {accountValue ? defaultElement : changedElement}
     </form>
+    </div>
+     </CreateAccountStyles>
     </AccountForm>
   )
   }

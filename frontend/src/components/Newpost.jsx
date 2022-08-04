@@ -55,16 +55,12 @@ export default function Newpost(props) {
   };
 
   const getChars = (content) => {
+    console.log('content', content)
     if(content) {
       const charLength = content.length;
       return 140 - charLength;
     }
-    if(content.length > 140) {
-      return 0 - content.length
-    }
-    else{
-      return 140
-    }
+    return 140
   }
   
   return (
@@ -77,19 +73,21 @@ export default function Newpost(props) {
      </NavStyles>
           <Accounts account={account} setAccount={setAccount} />
           <CreatePost>
-          <form>
-            <p>Create a new post</p>
-            <textarea id="postInput"
-              placeholder="What's happening?"
-              value={content}
-              onChange={handleContent}
-              ref={inputElement}>
-              </textarea>
-            <div>
-              <button onClick={submitAccount}>Twoot</button>
-              <span id='countChars'>{getChars(content)}</span>
-            </div>
-          </form>
+          <div>
+            <form>
+              <p>Create a new post</p>
+              <textarea id="postInput"
+                placeholder="What's happening?"
+                value={content} 
+                onChange={handleContent}
+                ref={inputElement}>
+                </textarea>
+              <div>
+                <button disabled={ getChars(content)<0 || getChars(content)===140} onClick={submitAccount}>Twoot</button>
+                <span id='countChars' className={getChars(content)<0?'negative':""}>{getChars(content)}</span>
+              </div>
+            </form>
+          </div>
           </CreatePost>
     </div>
   );

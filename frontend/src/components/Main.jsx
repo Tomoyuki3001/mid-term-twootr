@@ -18,9 +18,13 @@ export default function MainComponents() {
   const twootsElements = array.map((element) => (
     <div className="post_user_box">
       <div className="post_user_information">
+        <div className="user-profile">
         <img src={`https://avatars.dicebear.com/api/bottts/${element.authorSlug}.svg`} alt=""/>
         <span>{element.author}</span>
+        </div>
+        <div>
         <span>{element.authorSlug}</span>
+        </div>
       </div>
       <div className="post_user_contents">
         <p>{element.content}</p>
@@ -43,7 +47,11 @@ export default function MainComponents() {
   ));
 
   function changeColor(e) {
-    e.currentTarget.style.color = "pink";
+    if (e.currentTarget.style.color !== "rgb(238, 198, 67)") {
+      e.currentTarget.style.color = "rgb(238, 198, 67)";
+    } else {
+      e.currentTarget.style.color = "black";
+    }
   }
 
   return (
