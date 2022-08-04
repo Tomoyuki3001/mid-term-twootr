@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect} from 'react';
-import { AccountForm } from './styles/AccountForm';
 import { CreateAccountStyles } from './styles/CreateAccountStyle';
 
 
@@ -37,40 +36,42 @@ export default function Accounts(props) {
     }, [])
 
     const defaultElement = (
-      <div>
-        <img src={`https://avatars.dicebear.com/api/bottts/${account.slug}.svg`} alt=""/>
-       <div className='create-account-box'>
-            <p className='create-account-name'>{account.firstName} {account.lastName}</p>
-            <button type='submit' onClick={changeValue}><i class="fas fa-edit"></i></button>
-       </div>
-       <p className='ceate-account-slug'>{account.slug}</p>
+      
+      <div className='account-form'> 
+          <img src={`https://avatars.dicebear.com/api/bottts/${account.slug}.svg`} alt=""/>
+        <div className='create-account-box'>
+              <p className='create-account-name'>{account.firstName} {account.lastName}</p>
+              <button type='submit' onClick={changeValue}><i class="fas fa-edit"></i></button>
+        </div>
+        <p className='ceate-account-slug'>{account.slug}</p>
        </div>
     )
 
     const changedElement = (
-      <form className='create-account-clicked'>
-        <img src={`https://avatars.dicebear.com/api/bottts/${account.slug}.svg`} alt=""/>
-      <div className='account-input-box'>
-        <input type="text" className="create-account-input" onChange={handleFirstNameChange} />
-        <input type="text" onChange={handleLastNameChange} />
-        <button type='submit'onClick={submitAccount}><i class="fas fa-edit"></i></button>
+      <div className='account-form'> 
+             <img src={`https://avatars.dicebear.com/api/bottts/${account.slug}.svg`} alt=""/>
+        <form className='create-account-clicked'>
+   
+        <div className='account-input-box'>
+          <input type="text" className="create-account-input" onChange={handleFirstNameChange} />
+          <input type="text" onChange={handleLastNameChange} />
+          <button type='submit'onClick={submitAccount}><i class="fas fa-edit"></i></button>
+        </div>
+        <div className='create-account-name-box'>
+        <p className='ceate-account-name'>{account.firstName} {account.lastName}</p>
+        <p className='ceate-account-slug'>{account.slug}</p>
+        </div>
+        </form>
       </div>
-      <div className='create-account-name-box'>
-      <p className='ceate-account-name'>{account.firstName} {account.lastName}</p>
-      <p className='ceate-account-slug'>{account.slug}</p>
-      </div>
-      </form>
     )
  
   return (
-    <AccountForm>
+ 
       <CreateAccountStyles>
-        <div>
-    <form className='account-form' >
-      {accountValue ? defaultElement : changedElement}
-    </form>
-    </div>
+            <form >
+              {accountValue ? defaultElement : changedElement}
+            </form>
      </CreateAccountStyles>
-    </AccountForm>
+
   )
   }

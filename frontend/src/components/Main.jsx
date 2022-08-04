@@ -23,7 +23,7 @@ export default function MainComponents() {
           <span>{element.author}</span>
         </div>
         <div>
-          <span>@{element.authorSlug}</span>
+          <span>{element.authorSlug}</span>
         </div>
        
       </div>
