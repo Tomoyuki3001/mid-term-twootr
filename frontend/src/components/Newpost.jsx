@@ -44,18 +44,15 @@ export default function Newpost(props) {
     axios
       .post("http://localhost:8080/twoot", { newTwoot: newPostObject })
       .then((res) => {
-        setArray([...array, {...res.data }]);
+        console.log("check data", res.data);
+        setArray([ {...res.data }, ...array]);
       })
       .catch((err) => {
         console.log(err);
       });
-      axios.get("http://localhost:8080/twoots").then((res) => {
-        setArray(res.data);
-      });
   };
 
   const getChars = (content) => {
-    console.log('content', content)
     if(content) {
       const charLength = content.length;
       return 140 - charLength;
@@ -76,7 +73,8 @@ export default function Newpost(props) {
           <div>
             <form>
               <p>Create a new post</p>
-              <textarea id="postInput"
+              <textarea 
+                className='create_textarea'
                 placeholder="What's happening?"
                 value={content} 
                 onChange={handleContent}
