@@ -14,8 +14,6 @@ export default function Accounts(props) {
       setAccount({...account, lastName:`${e.target.value}`, slug:`@${account.firstName}-${e.target.value}`});
     };
 
-
-
     const changeValue = (event) => {
       event.preventDefault();
       account.firstName = "";
