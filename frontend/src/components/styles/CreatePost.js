@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const CreatePost = styled.div``;
+export const CreatePost = styled.div`
+  background-color: green;
+`;
 
 // form {
 //   p {
