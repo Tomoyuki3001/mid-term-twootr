@@ -35,7 +35,7 @@ export default function Newpost(props) {
     event.preventDefault();
     setContent(event.target.value);
     newPostObject.author = account.firstName + " " + account.lastName;
-    newPostObject.content = newPostObject.content;
+    // newPostObject.content = newPostObject.content;
     newPostObject.authorSlug = account.slug;
     newPostObject.dateAdded = date;
     axios
