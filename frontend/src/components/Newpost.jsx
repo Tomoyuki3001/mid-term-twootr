@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useRef } from "react";
 import Accounts from "./Accounts";
-import { CreatePost } from "./styles/CreatePost";
+// import { CreatePost } from "./styles/CreatePost";
 import { NavStyles } from "./styles/NavStyles";
+import { StyledNewPost } from "./styles/StyledNewPost";
 
 export default function Newpost(props) {
   const { account, setAccount } = props;
@@ -66,7 +67,7 @@ export default function Newpost(props) {
         </nav>
       </NavStyles>
       <Accounts account={account} setAccount={setAccount} />
-      <CreatePost>
+      <StyledNewPost>
         <div>
           <form>
             <p>Create a new post</p>
@@ -93,7 +94,7 @@ export default function Newpost(props) {
             </div>
           </form>
         </div>
-      </CreatePost>
+      </StyledNewPost>
     </div>
   );
 }
