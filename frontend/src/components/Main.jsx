@@ -10,7 +10,7 @@ export default function MainComponents() {
     const [content, setContent] = useState("");
 
     useEffect(() => {
-        axios.get("http://localhost:8080/twoots").then((res) => {
+        axios.get("/twoots").then((res) => {
           setArray(res.data);
         });
       }, []);

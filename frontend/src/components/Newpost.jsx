@@ -39,7 +39,7 @@ export default function Newpost(props) {
     newPostObject.authorSlug = account.slug;
     newPostObject.dateAdded = date;
     axios
-      .post("http://localhost:8080/twoot", { newTwoot: newPostObject })
+      .post("/twoot", { newTwoot: newPostObject })
       .then((res) => {
         console.log("check data", res.data);
         setArray([ {...res.data }, ...array]);
