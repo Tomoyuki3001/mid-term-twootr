@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import Accounts from "./Accounts";
 // import { CreatePost } from "./styles/CreatePost";
 import { NavStyles } from "./styles/NavStyles";
-import { StyledNewPost } from "./styles/StyledNewPost";
+import { StyledNewPost } from "./styles/StyledNewPost.styles";
 
 export default function Newpost(props) {
   const { account, setAccount } = props;
