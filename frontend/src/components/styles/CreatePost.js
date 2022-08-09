@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CreatePost = styled.form`
+export const CreatePost = styled.div`
   form {
     p {
       font-weight: bold;
