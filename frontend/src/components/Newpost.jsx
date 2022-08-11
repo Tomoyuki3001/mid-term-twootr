@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useRef } from "react";
 import Accounts from "./Accounts";
 // import { CreatePost } from "./styles/CreatePost";
-import { NavStyles } from "./styles/NavStyles";
-import { StyledNewPost } from "./styles/StyledNewPost.styles";
+// import { NavStyles } from "./styles/NavStyles";
+// import { StyledNewPost } from "./styles/StyledNewPost.styles";
 
 export default function Newpost(props) {
   const { account, setAccount } = props;
@@ -60,41 +60,44 @@ export default function Newpost(props) {
 
   return (
     <div>
-      <NavStyles>
-        <nav>
-          <span>Twootr</span>
-          <button onClick={handlefocus}>Write a new tweet</button>
-        </nav>
-      </NavStyles>
+      <nav className="nav_section">
+        <span>Twootr</span>
+        <button className="nav_button" onClick={handlefocus}>
+          Write a new tweet
+        </button>
+      </nav>
       <Accounts account={account} setAccount={setAccount} />
-      <StyledNewPost>
-        <div>
-          <form>
-            <p>Create a new post</p>
-            <textarea
-              className="create_textarea"
-              placeholder="What's happening?"
-              value={content}
-              onChange={handleContent}
-              ref={inputElement}
-            ></textarea>
-            <div>
-              <button
-                disabled={getChars(content) < 0 || getChars(content) === 140}
-                onClick={submitAccount}
-              >
-                Twoot
-              </button>
-              <span
-                id="countChars"
-                className={getChars(content) < 0 ? "negative" : ""}
-              >
-                {getChars(content)}
-              </span>
-            </div>
-          </form>
-        </div>
-      </StyledNewPost>
+      <div className="create_post_section">
+        <form className="create_post_form">
+          <p className="create_post_sentense">Create a new post</p>
+          <textarea
+            className="create_textarea"
+            placeholder="What's happening?"
+            value={content}
+            onChange={handleContent}
+            ref={inputElement}
+          ></textarea>
+          <div className="create_post_text_section">
+            <button
+              className="create_post_button"
+              disabled={getChars(content) < 0 || getChars(content) === 140}
+              onClick={submitAccount}
+            >
+              Twoot
+            </button>
+            <span
+              id="countChars"
+              className={
+                getChars(content) < 0
+                  ? "create_post_number_negative"
+                  : "create_post_number"
+              }
+            >
+              {getChars(content)}
+            </span>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
